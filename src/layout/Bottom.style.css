@@ -1,0 +1,16 @@
+.BottomContainer{
+    color:rgb(207, 196, 196);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+@media (max-width:768px) {
+    p{
+        font-size: 13px;
+    }
+    
+}

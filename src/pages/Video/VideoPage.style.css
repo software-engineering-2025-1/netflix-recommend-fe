@@ -1,0 +1,100 @@
+html{
+    background-color: black;
+}
+
+.row{
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+
+}
+
+.SortButton{
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+}
+
+.SortButton Button{
+    padding:10px;
+    margin: 10px;
+}
+
+
+.page-link{
+    background-color: black !important;  
+    color: white !important;
+    border: none;
+}
+
+
+.paginationContainer{
+    display: flex;
+    justify-content: center;
+    padding:80px;
+}
+
+/* 버튼 스타일 */
+@media (max-width: 720px) {
+    .SortButton {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000; 
+      padding-top:100px;
+    }
+  
+    .SortButton button {
+      margin-bottom: 10px;
+    }
+
+
+    .paginationContainer {
+      padding: 20px 0; /* 페이지네이션의 상하 여백 조정 */
+    }
+  
+    .pagination {
+      display: flex;
+      justify-content: center;
+    }
+  
+    .pagination .page-item {
+      display: none; /* 페이지 버튼 숨기기 */
+    }
+  
+    .pagination .page-item:first-child,
+    .pagination .page-item:last-child {
+      display: inline-block; /* 처음과 마지막 페이지 버튼만 표시 */
+    }
+  
+    .MovieBox > div {
+      width: 100%; /* 각 카드가 화면의 48%를 차지하도록 설정 */
+      margin-bottom: 20px; /* 각 카드 사이에 간격을 주기 위해 마진 추가 */
+    }
+
+    .MovieBox{
+      padding-top:250px
+    }
+
+  }
+
+
+
+  .MovieGenreContainer{
+    padding-top: 60px;
+    margin-left: 20px;
+  }
+
+  .NoGenre{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+  }
+
+  .GenreBadge{
+    cursor: pointer;
+
+  }
+
