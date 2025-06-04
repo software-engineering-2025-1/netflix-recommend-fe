@@ -1,9 +1,7 @@
 import axios from "axios";
 
-
 const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
 const BASE_URL = process.env.REACT_APP_MOVIE_API_BASE_URL;
-
 
 const api = axios.create({
     baseURL: BASE_URL,
@@ -12,16 +10,6 @@ const api = axios.create({
         Authorization: `Bearer ${API_KEY}`,
     }
 })
-
-// const API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NDZlNmM1MjRiMmFiMGJkYjI5MGM1NTZhMWU1Yzk4OSIsInN1YiI6IjY1ZTU4ZTBmZmUwNzdhMDE4NTEzMmJmNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8C5UUwSAxpP1A7428XiApvenJDILurI6quirbwxmJ7A";
-
-// const api = axios.create({
-//     baseURL: "https://api.themoviedb.org/3",
-//     headers:{
-//         Accept:'application/json',
-//         Authorization: `Bearer ${API_KEY}`,
-//     }
-// })
 
 // 요청 인터셉터 추가하기
 axios.interceptors.request.use(function (config) {

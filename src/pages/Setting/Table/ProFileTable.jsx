@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Spinner, Alert, Row, Col, Badge } from 'react-bootstrap';
+import { Spinner, Alert, Card, Row, Col, Badge } from 'react-bootstrap';
 import api2 from '../../../utils/api2';
 
 const ProfileTable = () => {
@@ -35,33 +35,37 @@ const ProfileTable = () => {
   }
 
   return (
-    <div>
-      <h5 className="text-white mb-4">👤 개인 정보</h5>
-      <Row className="mb-3">
-        <Col xs={4} className="text-white fw-semibold">이름</Col>
-        <Col className="text-white">{profile.name || '정보 없음'}</Col>
-      </Row>
-      <Row className="mb-3">
-        <Col xs={4} className="text-white fw-semibold">나이</Col>
-        <Col className="text-white">{profile.age || '정보 없음'}</Col>
-      </Row>
-      <Row className="mb-3">
-        <Col xs={4} className="text-white fw-semibold">국가</Col>
-        <Col className="text-white">{profile.country || '정보 없음'}</Col>
-      </Row>
-      <Row className="mb-3">
-        <Col xs={4} className="text-white fw-semibold">선호 장르</Col>
-        <Col>
-          {profile.genres && profile.genres.length > 0 ? (
-            profile.genres.map((genre, index) => (
-              <Badge key={index} bg="secondary" className="me-1">{genre}</Badge>
-            ))
-          ) : (
-            <span className="text-white">정보 없음</span>
-          )}
-        </Col>
-      </Row>
-    </div>
+    <Card bg="dark" text="light" className="shadow-sm">
+      <Card.Body>
+        <Card.Title className="mb-4">👤 개인 정보</Card.Title>
+        <Row className="mb-3">
+          <Col xs={4} className="fw-semibold">이름</Col>
+          <Col>{profile.name || '정보 없음'}</Col>
+        </Row>
+        <Row className="mb-3">
+          <Col xs={4} className="fw-semibold">나이</Col>
+          <Col>{profile.age || '정보 없음'}</Col>
+        </Row>
+        <Row className="mb-3">
+          <Col xs={4} className="fw-semibold">국가</Col>
+          <Col>{profile.country || '정보 없음'}</Col>
+        </Row>
+        <Row className="mb-3">
+          <Col xs={4} className="fw-semibold">선호 장르</Col>
+          <Col>
+            {profile.genres && profile.genres.length > 0 ? (
+              profile.genres.map((genre, index) => (
+                <Badge key={index} bg="secondary" className="me-2 rounded-pill">
+                  {genre}
+                </Badge>
+              ))
+            ) : (
+              '정보 없음'
+            )}
+          </Col>
+        </Row>
+      </Card.Body>
+    </Card>
   );
 };
 

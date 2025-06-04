@@ -9,3 +9,17 @@
     }
     
 }
+.group-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+.group-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.rs-country__single-value {
+    background-color: red !important;
+  color: white !important;
+  opacity: 1 !important;
+}
