@@ -23,7 +23,7 @@
 .overlay:hover{
     opacity: 1;
     padding:10px;
-
+    border-radius: 10px;
 }
 
 .movie-card:hover{
@@ -34,8 +34,7 @@
 
 .movie-detail-Info{
     padding-top: 40px;
-    background: none;
-    
+    background-color: transparent;  
 }
 
 .movieTitle{

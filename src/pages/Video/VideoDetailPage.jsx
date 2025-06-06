@@ -40,7 +40,7 @@ const VideoDetail = () => {
               <Col sm={4} className="MovieInfo">
                 <div
                   className="MovieDetailInfoImage"
-                  style={{ backgroundImage: `url(${poster_URL})` }}
+                  style={{ backgroundImage: `url(${posterPath ? poster_URL : `https://dummyimage.com/210x330/cccccc/000000&text=${encodeURIComponent(data?.title)}`})` }}
                 ></div>
               </Col>
               <Col sm={8} className="MovieInfoContainer">

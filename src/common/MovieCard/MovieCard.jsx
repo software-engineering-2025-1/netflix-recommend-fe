@@ -27,9 +27,9 @@ const MovieCard = ({ movie }) => {
                 <h4>{movie.title}</h4>
                 <Genre movie={movie} />
                 <div className='movie-detail-Info'>
-                    <div>평점 : {movie?.vote_average}점</div>
-                    <div>누적관객 수 : {movie?.popularity}명</div>
-                    <div>연령제한 : {movie?.adult ? 'over 18' : 'under 18'}</div>
+                    <div style={{backgroundColor: 'transparent'}}>평점 : {movie?.vote_average}점</div>
+                    <div style={{backgroundColor: 'transparent'}}>누적관객 수 : {movie?.popularity}명</div>
+                    <div style={{backgroundColor: 'transparent'}}>연령제한 : {movie?.adult ? 'over 18' : 'under 18'}</div>
                 </div>
             </div>
         </div>
