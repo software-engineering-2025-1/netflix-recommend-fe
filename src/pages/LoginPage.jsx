@@ -18,7 +18,7 @@ function LoginPage() {
             <div className="mb-4">
               <FaFilm size={50} color="#d81f26" className="mb-3" />
               <h2 className="fw-bold" style={{ color: '#d81f26' }}>Netflix Recommend</h2>
-              <p className="text-muted">카카오로 간편하게 로그인하세요</p>
+              <p style={{color: 'white'}}>카카오로 간편하게 로그인하세요</p>
             </div>
             <Button
               onClick={handleLogin}
