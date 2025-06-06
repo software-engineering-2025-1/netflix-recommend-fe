@@ -22,14 +22,6 @@ const GroupCard = ({ group }) => {
                 color: 'white',
                 cursor: 'pointer',
             }}
-            onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-5px)';
-                e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.6)';
-            }}
-            onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'none';
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.4)';
-            }}
             >
             <h5 className="mb-3">{group.name}</h5>
             <Button

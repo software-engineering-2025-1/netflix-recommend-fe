@@ -8,7 +8,6 @@ const GroupReviewSection = ({ groupId, groupName, setLoading, setError }) => {
   const [page, setPage] = useState(1);
   const [reviews, setReviews] = useState([]);
   const [newReview, setNewReview] = useState('');
-  const [videoTitle, setVideoTitle] = useState('');
 
   useEffect(() => {
     fetchReviews();
@@ -31,14 +30,13 @@ const GroupReviewSection = ({ groupId, groupName, setLoading, setError }) => {
   };
   const handleSubmitReview = async (e) => {
     e.preventDefault();
-    if (!newReview.trim() || !videoTitle.trim()) return;
+    if (!newReview.trim()) return;
 
     try {
       await api2.post(`/groups/${groupId}/reviews`, {
-        comment: `videoTitle: ${videoTitle}\treview: ${newReview}`,
+        comment: newReview,
       });
       setNewReview('');
-      setVideoTitle('');
       fetchReviews();
     } catch (err) {
       setError('❌ 리뷰 작성에 실패했습니다.');
@@ -50,24 +48,16 @@ const GroupReviewSection = ({ groupId, groupName, setLoading, setError }) => {
   return (
     <>
     <Card className="mb-4 bg-dark text-white">
-      <Card.Header>{groupName} 그룹 리뷰</Card.Header>
+      <Card.Header>{groupName} 그룹의 리뷰</Card.Header>
       <Card.Body>
         <Form onSubmit={handleSubmitReview} className="mb-4">
-          <Form.Group controlId="videoIdInput" className="mb-2">
-            <Form.Control
-              type="text"
-              value={videoTitle}
-              onChange={(e) => setVideoTitle(e.target.value)}
-              placeholder="영상 Title를 입력하세요 (예: Harry potter)"
-            />
-          </Form.Group>
           <Form.Group controlId="reviewInput">
             <Form.Control
               as="textarea"
               rows={3}
               value={newReview}
               onChange={(e) => setNewReview(e.target.value)}
-              placeholder="해당 영상에 대한 그룹 리뷰를 작성해주세요."
+              placeholder="그룹원에게 공유하고 싶은 리뷰를 작성하세요."
             />
           </Form.Group>
           <Button type="submit" variant="danger" className="mt-2">
@@ -81,21 +71,19 @@ const GroupReviewSection = ({ groupId, groupName, setLoading, setError }) => {
           <Row>
             {displayReviews.map((review, idx) => (
               <Col key={idx} lg={12}>
-                <Card className="mb-3 bg-secondary text-white">
-                  <Card.Body>
-                    <Card.Text>
-                      <strong>👤 Author: {review.author}</strong>
-                    </Card.Text>
-                    <Card.Text>
-                      {review.comment.split('\n').map((line, index, array) => (
-                        <span key={index}>
-                          {line}
-                          {index !== array.length - 1 && <br />}
-                        </span>
-                      ))}
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
+                <div 
+                className="d-flex flex-column justify-content-between p-3"
+                style={{
+                borderTop: '1px solid #495057', // 밝은 회색 테두리
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                color: 'white',
+                cursor: 'pointer',
+                margin: '2px'
+                }}>
+                      <strong style={{marginBottom: '5px'}}>🎬 작성자: {review.author}</strong>
+                      {review.comment}
+                </div>
               </Col>
             ))}
           </Row>
