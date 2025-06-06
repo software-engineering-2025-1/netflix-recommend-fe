@@ -1,14 +1,13 @@
 import axios from "axios";
+import { getToken } from "./auth";
 
-const API_KEY = process.env.REACT_APP_API_KEY;
 const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api`;
-
 
 const api2 = axios.create({
     baseURL: BASE_URL,
     headers:{ 
         Accept:'application/json',
-        Authorization: `Bearer ${API_KEY}`,
+        Authorization: `Bearer ${getToken()}`,
     }
 })
 

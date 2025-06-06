@@ -13,7 +13,7 @@ const KakaoCallbackPage = () => {
 
     if (token) {
       saveToken(token);
-      navigate('/'); // 로그인 성공 후 홈(=PersonMediaPage)으로
+      window.location.href = '/' // 로그인 성공 후 홈(=PersonMediaPage)으로
     } else {
       alert('로그인 실패: 토큰이 없습니다.');
       navigate('/login');
