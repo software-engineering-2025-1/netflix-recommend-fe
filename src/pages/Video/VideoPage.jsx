@@ -8,7 +8,7 @@ import MovieCard from '../../common/MovieCard/MovieCard';
 import ReactPaginate from 'react-paginate';
 import isLoadingSpinner from '../../common/Spinner/isLoadingSpinner';
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 9;
 
 const VideoPage = () => {
   const [query] = useSearchParams(); //URL 찾기위해 선언

@@ -7,9 +7,6 @@ import './VideoDetailPage.style.css';
 import MovieTab from '../MovieDetail/MovieTabs/MovieTab';
 import isLoadingSpinner from '../../common/Spinner/isLoadingSpinner';
 
-const DEFAULT_POSTER = 'https://via.placeholder.com/300x450?text=No+Image';
-const DEFAULT_BACKDROP = 'https://via.placeholder.com/1280x720?text=No+Backdrop';
-
 const VideoDetail = () => {
   const { id } = useParams();
 
@@ -18,13 +15,9 @@ const VideoDetail = () => {
   const posterPath = data?.poster_path;
   const backPoster = data?.backdrop_path;
 
-  const poster_URL = posterPath
-    ? `https://media.themoviedb.org/t/p/w300_and_h450_bestv2${posterPath}`
-    : DEFAULT_POSTER;
+  const poster_URL = `https://media.themoviedb.org/t/p/w300_and_h450_bestv2${posterPath}`
 
-  const backPoster_URL = backPoster
-    ? `https://image.tmdb.org/t/p/original${backPoster}`
-    : DEFAULT_BACKDROP;
+  const backPoster_URL = `https://image.tmdb.org/t/p/original${backPoster}`
 
   if (isLoading) {
     return <div>{isLoadingSpinner()}</div>;
@@ -43,7 +36,7 @@ const VideoDetail = () => {
       <div className="MainPoster" style={{ backgroundImage: `url(${backPoster_URL})` }}>
         <Container className="Container">
           <div className="InfoContainer">
-            <Row>
+            <Row style={{borderRadius: '10px'}}>
               <Col sm={4} className="MovieInfo">
                 <div
                   className="MovieDetailInfoImage"

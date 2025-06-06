@@ -4,7 +4,7 @@ import api2 from '../../../utils/api2';
 import VideoCard from '../../../common/MovieCard/VideoCard';
 import ReactPaginate from 'react-paginate';
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 9;
 
 const GroupRecommendSection = ({ groupId, groupName, setLoading, setError }) => {
   const [page, setPage] = useState(1);

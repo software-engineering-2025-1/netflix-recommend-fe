@@ -46,7 +46,7 @@ const GroupSearchPage = () => {
             <Col key={group.id}>
               <Card className="h-100 bg-dark text-white border-light shadow-sm group-card">
                 <Card.Body className="d-flex flex-column justify-content-between">
-                  <Card.Title className="text-capitalize">{group.name}</Card.Title>
+                  <Card.Title>{group.name}</Card.Title>
                   <Button
                     variant="outline-light"
                     className="mt-3"

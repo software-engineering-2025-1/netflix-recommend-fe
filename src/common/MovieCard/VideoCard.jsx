@@ -18,10 +18,13 @@ const VideoCard = ({ title }) => {
         window.scrollTo(0, 0); // 윈도우 최상단으로 이동되게 함
     }
 
+    const lastSegment = data?.posterUrl?.split('/').pop();
+    if (lastSegment === 'null') data.posterUrl = null;
+
     return (
         <div 
             style={{
-                background: `url(${data?.posterUrl || `https://dummyimage.com/300x450/cccccc/000000&text=${encodeURIComponent(videoName)}`})`,
+                background: `url(${data?.posterUrl || `https://dummyimage.com/210x330/cccccc/000000&text=${encodeURIComponent(videoName)}`})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
             }}
@@ -31,7 +34,7 @@ const VideoCard = ({ title }) => {
                 <h4>{data?.title||videoName}</h4>
                 {/* <Genre movie={movie} /> */}
                 <div className='movie-detail-Info'>
-                    <div>영화 평점 : {data?.vote_average}점</div>
+                    <div>평점 : {data?.vote_average}점</div>
                     <div>누적관객 수 : {data?.popularity}명</div>
                     <div>연령제한 : {data?.adult ? 'over 18' : 'under 18'}</div>
                 </div>

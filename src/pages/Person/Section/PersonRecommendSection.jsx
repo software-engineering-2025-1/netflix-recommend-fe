@@ -4,7 +4,7 @@ import ReactPaginate from 'react-paginate';
 import api2 from '../../../utils/api2';
 import VideoCard from '../../../common/MovieCard/VideoCard';
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 9;
 
 const PersonRecommendSection = ({ setLoading, setError }) => {
   const [recommend, setRecommend] = useState([]);
