@@ -48,6 +48,10 @@ export const customStyles = {
       : '#212529',
     color: '#fff',
   }),
+  input: (provided) => ({
+    ...provided,
+    opacity: 0,
+  }),
 };
 
 export const customTheme = (theme) => ({

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Button, Alert, Card } from 'react-bootstrap';
 import Select from 'react-select';
 import api2 from '../../../utils/api2';
@@ -14,29 +14,53 @@ import {
 
 
 const ProfileEditTable = () => {
+  const [originalUser, setOriginalUser] = useState(null);
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
   const [country, setCountry] = useState(null);
   const [genres, setGenres] = useState([]);
   const [message, setMessage] = useState('');
 
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await api2.get('/users/me');
+        const user = response.data;
+        setOriginalUser(user);
+        setName(user.name || '');
+        setAge(user.age?.toString() || '');
+        setCountry(
+          countryOptions.find((c) => c.label === user.country) || null
+        );
+        setGenres(
+          genreOptions.filter((g) => user.genres.includes(g.label)) || []
+        );
+      } catch (error) {
+        console.error('❌ 사용자 정보 로드 실패', error);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
   const handleUpdateProfile = async () => {
-    console.log("현재 country:", country);
+    if (!originalUser) return;
+
+    // 🔹 변경 안 된 값은 기존 값으로 대체
+    const updatedData = {
+      name: name || originalUser.name,
+      age: age ? parseInt(age) : originalUser.age,
+      country: country?.value || originalUser.country,
+      genres: genres.length
+        ? genres.map((g) => g.value)
+        : originalUser.genres,
+    };
+
     try {
-      await api2.put('/users/me', {
-        name,
-        age: parseInt(age),
-        country: country?.value || '',
-        genres: genres.map((g) => g.value),
-      });
+      await api2.put('/users/me', updatedData);
       setMessage('✅ 개인 정보가 수정되었습니다.');
     } catch (error) {
-      console.log({
-        name,
-        age: parseInt(age),
-        country: country?.value || '',
-        genres: genres.map((g) => g.value),
-      });
+      console.log('전송된 데이터:', updatedData);
       setMessage('❌ 수정 실패');
     }
   };
