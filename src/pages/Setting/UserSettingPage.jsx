@@ -12,26 +12,22 @@ const UserSettingPage = () => {
     <Container className="py-5">
       <h3 className="text-white mb-4">🛠️ 사용자 설정</h3>
 
-      <Card bg="dark" text="light" className="mb-4 shadow-sm">
-        <Card.Body>
           <Nav fill variant="tabs" activeKey={activeTab} onSelect={(k) => setActiveTab(k || 'profile')}>
             <Nav.Item>
-              <Nav.Link eventKey="profile" className="text-white">👤 개인 정보</Nav.Link>
+              <Nav.Link eventKey="profile" style={{color: activeTab === 'profile' ? 'black' : 'white'}}>👤 개인 정보</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="profileEdit" className="text-white">✏️ 개인 정보 수정</Nav.Link>
+              <Nav.Link eventKey="profileEdit" style={{color: activeTab === 'profileEdit' ? 'black' : 'white'}}>✏️ 개인 정보 수정</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="history" className="text-white">🎬 시청 기록 추가</Nav.Link>
+              <Nav.Link eventKey="history" style={{color: activeTab === 'history' ? 'black' : 'white'}}>🎬 시청 기록 추가</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="group" className="text-white">👥 그룹 생성</Nav.Link>
+              <Nav.Link eventKey="group" style={{color: activeTab === 'group' ? 'black' : 'white'}}>👥 그룹 생성</Nav.Link>
             </Nav.Item>
           </Nav>
-        </Card.Body>
-      </Card>
 
-      <div>
+      <div style={{ marginTop: '20px' }}>
         {activeTab === 'profile' && <ProfileTable />}
         {activeTab === 'profileEdit' && <ProfileEditTable />}
         {activeTab === 'history' && <WatchHistoryTable />}
