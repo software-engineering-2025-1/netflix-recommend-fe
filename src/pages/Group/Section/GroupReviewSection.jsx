@@ -50,7 +50,7 @@ const GroupReviewSection = ({ groupId, groupName, setLoading, setError }) => {
   return (
     <>
     <Card className="mb-4 bg-dark text-white">
-      <Card.Header>{groupName || '그룹'} 리뷰</Card.Header>
+      <Card.Header>{groupName} 그룹 리뷰</Card.Header>
       <Card.Body>
         <Form onSubmit={handleSubmitReview} className="mb-4">
           <Form.Group controlId="videoIdInput" className="mb-2">

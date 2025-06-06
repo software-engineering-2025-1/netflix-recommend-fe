@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Button, Alert, Spinner, Row, Col, Card } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Container, Alert, Spinner, Row, Col } from 'react-bootstrap';
 import api2 from '../../utils/api2';
+import GroupCard from './GroupCard';
 
 const GroupSearchPage = () => {
   const [groups, setGroups] = useState([]);
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMyGroups = async () => {
@@ -23,10 +22,6 @@ const GroupSearchPage = () => {
     };
     fetchMyGroups();
   }, []);
-
-  const handleGroupSelect = (group) => {
-    navigate(`/groups/${group.id}/movies?groupName=${encodeURIComponent(group.name)}`);
-  };
 
   return (
     <Container className="my-5">
@@ -44,19 +39,7 @@ const GroupSearchPage = () => {
         <Row xs={1} sm={2} md={3} lg={4} className="g-4">
           {groups.map((group) => (
             <Col key={group.id}>
-              <Card className="h-100 bg-dark text-white border-light shadow-sm group-card">
-                <Card.Body className="d-flex flex-column justify-content-between">
-                  <Card.Title>{group.name}</Card.Title>
-                  <Button
-                    variant="outline-light"
-                    className="mt-3"
-                    size="sm"
-                    onClick={() => handleGroupSelect(group)}
-                  >
-                    이동
-                  </Button>
-                </Card.Body>
-              </Card>
+              <GroupCard group={group}></GroupCard>
             </Col>
           ))}
         </Row>

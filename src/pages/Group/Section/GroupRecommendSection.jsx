@@ -36,7 +36,7 @@ const GroupRecommendSection = ({ groupId, groupName, setLoading, setError }) => 
   return (
     <>
     <Card className="mb-4 bg-dark text-white">
-      <Card.Header>Group {groupName || '그룹'} 추천 영상</Card.Header>
+      <Card.Header>{groupName} 그룹 추천 영상</Card.Header>
       <Card.Body>
         {displayRecommends.length === 0 ? (
           <p className="text-white">추천된 영상이 없습니다.</p>

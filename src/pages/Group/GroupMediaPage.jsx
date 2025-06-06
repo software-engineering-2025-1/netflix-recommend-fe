@@ -25,7 +25,7 @@ const GroupMediaPage = () => {
     <Container className="my-4">
       <Row>
         <Col xs={12} className="mb-3 d-flex justify-content-between align-items-center">
-          <h3 className="text-white">🎬 {groupName || '그룹'} 콘텐츠</h3>
+          <h3 className="text-white">🎬 {groupName || '그룹'} 그룹</h3>
           <Button variant="secondary" onClick={handleGoToSearch}>
             🔍 그룹 검색으로 이동
           </Button>

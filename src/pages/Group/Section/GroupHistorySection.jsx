@@ -68,7 +68,7 @@ const GroupHistorySection = ({ groupId, groupName, setLoading, setError }) => {
   return (
     <>
       <Card className="mb-4 bg-dark text-white">
-        <Card.Header>Group {groupName || '그룹'} 의 시청 기록</Card.Header>
+        <Card.Header>{groupName} 그룹의 시청 기록</Card.Header>
         <Card.Body>
           <Row>
             {displayVideos.length > 0 ? (
