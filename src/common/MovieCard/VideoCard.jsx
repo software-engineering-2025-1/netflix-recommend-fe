@@ -1,5 +1,5 @@
 import React from 'react';
-import "./MovieCard.style.css";
+import "./VideoCard.style.css";
 import { Spinner }  from "react-bootstrap";
 import { useNavigate } from 'react-router-dom';
 import { useMoviePosterByTitle } from "../../hooks/useMoviePosterByTitle";
@@ -32,7 +32,6 @@ const VideoCard = ({ video }) => {
             >
             <div className='overlay' onClick={moveToDetailPage}>
                 <h4>{video.title}</h4>
-                {/* <Genre movie={movie} /> */}
                 <div className='movie-detail-Info'>
                     <div style={{backgroundColor: 'transparent'}}>감독 : {video.director}</div>
                     <div style={{backgroundColor: 'transparent'}}>유형 : {video.type}</div>

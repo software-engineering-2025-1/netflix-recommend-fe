@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom'; // ✅ useNavigate 추가
 import { Container, Row, Col, Button, Alert } from 'react-bootstrap';
 import isLoadingSpinner from '../../common/Spinner/isLoadingSpinner';
@@ -25,7 +25,7 @@ const GroupMediaPage = () => {
     <Container className="my-4">
       <Row>
         <Col xs={12} className="mb-3 d-flex justify-content-between align-items-center">
-          <h3 className="text-white">🎬 {groupName || '그룹'} 그룹</h3>
+          <h3 className="text-white">👥 {groupName || '그룹'} 그룹</h3>
           <Button variant="secondary" onClick={handleGoToSearch}>
             🔍 내 그룹 목록으로 이동
           </Button>

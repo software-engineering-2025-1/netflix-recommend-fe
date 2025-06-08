@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Container, ListGroup, Col, Form, Row, Alert, Spinner, InputGroup, Button } from 'react-bootstrap';
 import api2 from '../../utils/api2';
-import { useNavigate } from 'react-router-dom';
 
 const FollowPage = () => {
   const [followings, setFollowings] = useState(null);
   const [followers, setFollowers] = useState(null);
   const [message, setMessage] = useState(null);
   const [userIdToFollow, setUserIdToFollow] = useState(null);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
