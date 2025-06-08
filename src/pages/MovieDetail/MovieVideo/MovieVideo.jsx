@@ -1,12 +1,13 @@
 import React from 'react'
-import {useParams} from'react-router-dom'
+import { useSearchParams } from'react-router-dom'
 import { useMovieVideo } from '../../../hooks/useMovieVideo';
 import {Container,Row} from 'react-bootstrap';
 
 const MovieVideo = () => {
     let num = Math.floor(Math.random()*3);
-    let params = useParams();
-    const {data} = useMovieVideo(params);
+    const [query] = useSearchParams()
+    const id = query.get('id');
+    const {data} = useMovieVideo(id);
 
     let YOUTUBE_KEY = data?.results?.[num]?.key;
     const URL = `https://www.youtube.com/embed/${YOUTUBE_KEY}`

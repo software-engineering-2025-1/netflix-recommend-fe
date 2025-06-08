@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useMovieDetails } from '../../hooks/useMovieDetails';
 import Alert from 'react-bootstrap/Alert';
-import { Row, Col, Container, Badge } from 'react-bootstrap';
+import { Row, Col, Container, Badge, Button } from 'react-bootstrap';
 import './VideoDetailPage.style.css';
 import MovieTab from '../MovieDetail/MovieTabs/MovieTab';
 import isLoadingSpinner from '../../common/Spinner/isLoadingSpinner';
 import { useVideoDetails } from '../../hooks/useVideoDetails';
+import api2 from '../../utils/api2';
 
 const VideoDetail = () => {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
   const realId = searchParams.get('id');
 
-  console.log('VideoDetailPage realId:', realId);
+  const [message, setMessage] = useState(null);
+  const [msgType, setMsgType] = useState(null);
 
   const { data, isLoading, isError, error } = useMovieDetails({ realId });
   const { data: video , isLoading: isLoading2, isError: isError2} = useVideoDetails({ id });
@@ -36,9 +38,43 @@ const VideoDetail = () => {
     return <Alert variant="warning">ℹ️ 영화 데이터를 찾을 수 없습니다.</Alert>;
   }
 
+  const handleRegisterHistory = async () => {
+    if (!id) {
+      setMessage("❌ 영상 ID가 유효하지 않습니다.");
+      setMsgType("danger");
+      return;
+    }
+  
+    try {
+      await api2.post(`/videos/${id}/histories`, {}); // 빈 바디 전달
+      setMessage("✅ 시청 기록이 등록되었습니다.");
+      setMsgType("success");
+    } catch (error) {
+      setMessage(`❌ ${error.response?.data || error.message}`);
+      setMsgType("danger"); 
+    }
+  };
+
   return (
     <>
       <div className="MainPoster" style={{ backgroundImage: `url(${backPoster_URL})` }}>
+        {message && <Alert variant={msgType}>{message}</Alert>}
+        <div
+          style={{
+            position: "sticky",
+            top: "20px",
+            right: "100px",
+            zIndex: 10,
+            display: "flex",
+            justifyContent: "flex-end",
+            padding: "1rem",
+            backgroundColor: 'transparent'
+          }}
+        >
+          <Button variant="success" onClick={handleRegisterHistory}>
+            시청 기록 등록
+          </Button>
+        </div>
         <Container className="Container">
           <div className="InfoContainer">
             <Row style={{borderRadius: '10px'}}>

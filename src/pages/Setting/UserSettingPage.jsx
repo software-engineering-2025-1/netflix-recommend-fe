@@ -20,9 +20,6 @@ const UserSettingPage = () => {
               <Nav.Link eventKey="profileEdit" style={{color: activeTab === 'profileEdit' ? 'black' : 'white'}}>✏️ 개인 정보 수정</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="history" style={{color: activeTab === 'history' ? 'black' : 'white'}}>🎬 시청 기록 추가</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
               <Nav.Link eventKey="group" style={{color: activeTab === 'group' ? 'black' : 'white'}}>👥 그룹 생성</Nav.Link>
             </Nav.Item>
           </Nav>
@@ -30,7 +27,6 @@ const UserSettingPage = () => {
       <div style={{ marginTop: '20px' }}>
         {activeTab === 'profile' && <ProfileTable />}
         {activeTab === 'profileEdit' && <ProfileEditTable />}
-        {activeTab === 'history' && <WatchHistoryTable />}
         {activeTab === 'group' && <GroupCreateTable />}
       </div>
     </Container>
