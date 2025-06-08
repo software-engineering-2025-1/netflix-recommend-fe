@@ -15,14 +15,9 @@ export const useMoviePosterByTitle = (title) => {
     },
     select: (movie) => ({
       id: movie.id,
-      title: movie.title,
-      posterUrl:
-        window.innerWidth <= 768
-          ? `https://media.themoviedb.org/t/p/w150_and_h225_face/${movie.poster_path}`
-          : `https://media.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`,
-      vote_average: movie.vote_average,
-      popularity: movie.popularity,
-      adult: movie.adult,
+      posterUrl: window.innerWidth <= 768
+        ? `https://media.themoviedb.org/t/p/w150_and_h225_face/${movie.poster_path}`
+        : `https://media.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`
     }),
     enabled: !!title, // title이 존재할 때만 호출
   });

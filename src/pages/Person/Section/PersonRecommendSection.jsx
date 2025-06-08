@@ -39,7 +39,7 @@ const PersonRecommendSection = ({ setLoading, setError }) => {
             {displayData.length > 0 ? (
               displayData.map((item) => (
                 <Col key={item.id} lg={4} xs={8} className="mb-3">
-                  <VideoCard title={item.title} />
+                  <VideoCard video={item} />
                 </Col>
               ))
             ) : (

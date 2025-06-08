@@ -44,7 +44,7 @@ const GroupRecommendSection = ({ groupId, groupName, setLoading, setError }) => 
           <Row>
             {displayRecommends.map((item) => (
               <Col key={item.id} lg={4} xs={8}>
-                <VideoCard title={item.title} />
+                <VideoCard video={item} />
               </Col>
             ))}
           </Row>

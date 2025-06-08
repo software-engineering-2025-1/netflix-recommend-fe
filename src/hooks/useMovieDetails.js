@@ -1,7 +1,7 @@
 import {useQuery} from "@tanstack/react-query";
 import api from '../utils/api';
 
-export const useMovieDetails = ({id}) =>{
+export const useMovieDetails = ({realId: id}) =>{
     return useQuery({
         queryKey:['movie-details',{id}],
         queryFn:()=>{
