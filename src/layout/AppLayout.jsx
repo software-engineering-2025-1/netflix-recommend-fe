@@ -48,6 +48,7 @@ const AppLayout = () => {
               <Nav.Link href="/">Person</Nav.Link>
               <Nav.Link href="/group">Group</Nav.Link>
               <Nav.Link href="/search">Search</Nav.Link>
+              <Nav.Link href="/follow">Follow</Nav.Link>
               <Nav.Link href="/setting">Setting</Nav.Link>
             </Nav>
             {loggedIn ? (

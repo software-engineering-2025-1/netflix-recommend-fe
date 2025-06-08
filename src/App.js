@@ -17,6 +17,7 @@ import LoginPage from './pages/LoginPage';
 import KakaoCallbackPage from './pages/KakaoCallbackPage';
 import PrivateRoute from './components/PrivateRoute';
 import SearchPage from './pages/Search/SearchPage';
+import FollowPage from './pages/Follow/FollowPage';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="video" element={<VideoPage />} />
             <Route path="video/:id" element={<VideoDetailPage />} />
             <Route path="search" element={<SearchPage />} />
+            <Route path="follow" element={<FollowPage />} />
           </Route>
         </Route>
 

@@ -23,7 +23,8 @@ const SearchPage = () => {
   };
 
   return (
-    <Container className="my-4">
+    <Container className="py-5">
+      <h3 className="text-white mb-4">🔍 콘텐츠 검색</h3>
       <Form onSubmit={handleSearch}>
         <div className="d-flex me-3">
           <Form.Control

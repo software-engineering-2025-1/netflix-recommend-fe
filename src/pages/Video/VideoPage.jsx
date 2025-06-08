@@ -43,7 +43,7 @@ const VideoPage = () => {
     return <Alert variant="danger">{error.message}</Alert>;
   }
 
-  const displayData = data.reviews; //뿌려줄 데이터들 모아놓기
+  const displayData = data.videos; //뿌려줄 데이터들 모아놓기
   const totalPage = data.totalPage; //총 페이지 수
   return (
     <Container>
