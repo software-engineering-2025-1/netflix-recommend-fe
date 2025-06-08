@@ -16,7 +16,7 @@ const VideoDetail = () => {
   console.log('VideoDetailPage realId:', realId);
 
   const { data, isLoading, isError, error } = useMovieDetails({ realId });
-  const { data: video , isLoading: isLoading2, isError: isError2, error: error2} = useVideoDetails({ id });
+  const { data: video , isLoading: isLoading2, isError: isError2} = useVideoDetails({ id });
 
   const posterPath = data?.poster_path;
   const backPoster = data?.backdrop_path;

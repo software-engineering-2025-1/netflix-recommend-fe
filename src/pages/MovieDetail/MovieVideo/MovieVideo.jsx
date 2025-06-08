@@ -8,7 +8,6 @@ const MovieVideo = () => {
     let params = useParams();
     const {data} = useMovieVideo(params);
 
-    console.log(data);
     let YOUTUBE_KEY = data?.results?.[num]?.key;
     const URL = `https://www.youtube.com/embed/${YOUTUBE_KEY}`
 

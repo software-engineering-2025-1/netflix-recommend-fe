@@ -4,22 +4,35 @@ import { Alert } from 'react-bootstrap';
 import { useSearchMovieQuery } from '../../hooks/useSearchMovie';
 import {Col,Row,Container} from 'react-bootstrap';
 import './VideoPage.style.css';
-import MovieCard from '../../common/MovieCard/MovieCard';
 import ReactPaginate from 'react-paginate';
 import isLoadingSpinner from '../../common/Spinner/isLoadingSpinner';
+import VideoCard from '../../common/MovieCard/VideoCard';
 
 const PAGE_SIZE = 9;
 
 const VideoPage = () => {
   const [query] = useSearchParams(); //URL 찾기위해 선언
-  const [page, setPage] = useState(1); //페이지네이션 상태함수(초기값 1)
+  const [page, setPage] = useState(0); //페이지네이션 상태함수
 
-  const keyword = query.get('q');//q 뒤에오는 값 가져오기
-  const { data, isLoading, isError, error } = useSearchMovieQuery({ keyword, page });//searchQuery 훅 가져와서 사용
+  const rate = query.get('rate');
+  const genre = query.get('genre');
+  const videoType = query.get('type');
+  const keyword = query.get('keyword');
+
+  const params = {
+    page: page,
+    size: PAGE_SIZE,
+    ...(keyword && { keyword }), 
+    ...(rate && { rate }), 
+    ...(genre && { genre }), 
+    ...(videoType && { type: videoType }), 
+  }
+
+  const { data, isLoading, isError, error } = useSearchMovieQuery({ params });
   
   //페이지 이동함수
   const handlePageClick = ({ selected }) => {
-    setPage(selected + 1);
+    setPage(selected);
   };
 
   //로딩스피너
@@ -30,17 +43,17 @@ const VideoPage = () => {
     return <Alert variant="danger">{error.message}</Alert>;
   }
 
-  const displayData = data.results; //뿌려줄 데이터들 모아놓기
-  const pageCount = Math.ceil(data?.total_results / PAGE_SIZE);
+  const displayData = data.reviews; //뿌려줄 데이터들 모아놓기
+  const totalPage = data.totalPage; //총 페이지 수
   return (
     <Container>
       <Row>
         <Col lg={8} xs={12} className='MovieBox'>
           {displayData.length === 0 && <h4 className= "NoGenre" variant="info">햬당 영화가 존재하지 않습니다.</h4>}
           <Row>
-            {displayData.map((movie, index) => (
+            {displayData.map((video, index) => (
               <Col key={index} lg={4} xs={8}>
-                <MovieCard movie={movie} />
+                <VideoCard video={video} />
               </Col>
             ))}
           </Row>
@@ -50,7 +63,7 @@ const VideoPage = () => {
               onPageChange={handlePageClick}
               pageRangeDisplayed={5}
               marginPagesDisplayed={2}
-              pageCount={pageCount}
+              pageCount={totalPage}
               previousLabel="< previous"
               pageClassName="page-item"
               pageLinkClassName="page-link"
@@ -62,7 +75,7 @@ const VideoPage = () => {
               breakLinkClassName="page-link"
               containerClassName="pagination"
               activeClassName="active"
-              forcePage={page - 1}
+              forcePage={page}
               style={{ backgroundColor: 'black' }}
             />
           </div>

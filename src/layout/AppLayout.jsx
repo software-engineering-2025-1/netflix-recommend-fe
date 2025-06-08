@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Outlet, useNavigate } from 'react-router-dom';
@@ -9,7 +8,6 @@ import '../layout/AppLayout.css';
 import { logout, isLoggedIn } from '../utils/auth'; // 인증 유틸 import
 
 const AppLayout = () => {
-  const [keyword, setKeyword] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
 
@@ -17,13 +15,6 @@ const AppLayout = () => {
   useEffect(() => {
     setLoggedIn(isLoggedIn());
   }, []);
-
-  const searchByKeyword = (event) => {
-    event.preventDefault();
-    if (keyword.trim() !== '') {
-      navigate(`/video?q=${keyword}`);
-    }
-  };
 
   const handleLogout = () => {
     logout();
@@ -56,27 +47,15 @@ const AppLayout = () => {
             >
               <Nav.Link href="/">Person</Nav.Link>
               <Nav.Link href="/group">Group</Nav.Link>
+              <Nav.Link href="/search">Search</Nav.Link>
               <Nav.Link href="/setting">Setting</Nav.Link>
             </Nav>
-            <Form className="d-flex me-3" onSubmit={searchByKeyword}>
-              <Form.Control
-                type="search"
-                placeholder="검색어를 입력해주세요."
-                className="me-2"
-                aria-label="Search"
-                value={keyword}
-                onChange={(e) => setKeyword(e.target.value)}
-              />
-              <Button variant="outline-danger" type="submit">
-                Search
-              </Button>
-            </Form>
             {loggedIn ? (
-              <Button variant="danger" onClick={handleLogout}>
+              <Button variant="danger" onClick={handleLogout} style={{ marginRight: '20px' }}>
                 로그아웃
               </Button>
             ) : (
-              <Button variant="outline-success" onClick={handleLogin}>
+              <Button variant="outline-success" onClick={handleLogin} style={{ marginRight: '20px' }}>
                 로그인
               </Button>
             )}

@@ -1,0 +1,16 @@
+export const rateOptions = [
+    { label: 'G', value: 'G' },
+    { label: 'NC-17', value: 'NC_17' },
+    { label: 'NR', value: 'NR' },
+    { label: 'PG', value: 'PG' },
+    { label: 'PG-13', value: 'PG_13' },
+    { label: 'R', value: 'R' },
+    { label: 'TV-14', value: 'TV_14' },
+    { label: 'TV-G', value: 'TV_G' },
+    { label: 'TV-MA', value: 'TV_MA' },
+    { label: 'TV-PG', value: 'TV_PG' },
+    { label: 'TV-Y', value: 'TV_Y' },
+    { label: 'TV-Y7', value: 'TV_Y7' },
+    { label: 'TV-Y7-FV', value: 'TV_Y7_FV' },
+    { label: 'UR', value: 'UR' },
+];

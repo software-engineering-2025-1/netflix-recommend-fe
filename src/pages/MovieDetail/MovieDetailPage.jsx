@@ -13,6 +13,7 @@ const MovieDetail = () => {
   let params = useParams(); //id 값을 가져오기 위해 선언
 
   const { data, isLoading, isError, error } = useMovieDetails(params); //데이터 가져오기
+  
   const posterPath = data?.poster_path; // 이미지
   const backPoster = data?.backdrop_path;
   

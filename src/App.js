@@ -16,6 +16,7 @@ import PersonMediaPage from './pages/Person/PersonMediaPage';
 import LoginPage from './pages/LoginPage';
 import KakaoCallbackPage from './pages/KakaoCallbackPage';
 import PrivateRoute from './components/PrivateRoute';
+import SearchPage from './pages/Search/SearchPage';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
             <Route path="setting" element={<UserSettingsPage />} />
             <Route path="video" element={<VideoPage />} />
             <Route path="video/:id" element={<VideoDetailPage />} />
+            <Route path="search" element={<SearchPage />} />
           </Route>
         </Route>
 
