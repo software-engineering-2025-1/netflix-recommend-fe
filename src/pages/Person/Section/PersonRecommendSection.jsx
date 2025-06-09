@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Row, Col } from 'react-bootstrap';
-import ReactPaginate from 'react-paginate';
-import api2 from '../../../utils/api2';
 import VideoCard from '../../../common/MovieCard/VideoCard';
-
-const PAGE_SIZE = 9;
+import recommendApi from '../../../utils/recommendApi';
+import api2 from '../../../utils/api2';
 
 const PersonRecommendSection = ({ setLoading, setError }) => {
   const [recommend, setRecommend] = useState([]);
-  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await api2.get('/users/me/recommend');
+        const userId = (await api2.get('/users/me')).data.id;
+        const res = await recommendApi.get(`/users/${userId}/recommend`);
         setRecommend(res.data || []);
       } catch (err) {
         setError('❌ 추천 영상을 불러오지 못했습니다.');
@@ -25,19 +23,14 @@ const PersonRecommendSection = ({ setLoading, setError }) => {
     fetchData();
   }, []);
 
-  const pageCount = Math.ceil(recommend.length / PAGE_SIZE);
-  const displayData = recommend.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
-
-  const handlePageClick = ({ selected }) => setPage(selected + 1);
-
   return (
     <>
       <Card className="mb-4 bg-dark text-white">
         <Card.Header>나의 추천 영상</Card.Header>
         <Card.Body>
           <Row>
-            {displayData.length > 0 ? (
-              displayData.map((item) => (
+            {recommend.length > 0 ? (
+              recommend.map((item) => (
                 <Col key={item.id} lg={4} xs={8} className="mb-3">
                   <VideoCard video={item} />
                 </Col>
@@ -48,27 +41,6 @@ const PersonRecommendSection = ({ setLoading, setError }) => {
           </Row>
         </Card.Body>
       </Card>
-      <div className="paginationContainer d-flex justify-content-center mt-4">
-        <ReactPaginate
-          nextLabel="next >"
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
-          marginPagesDisplayed={2}
-          pageCount={pageCount}
-          previousLabel="< previous"
-          pageClassName="page-item"
-          pageLinkClassName="page-link"
-          previousClassName="page-item"
-          previousLinkClassName="page-link"
-          nextClassName="page-item"
-          nextLinkClassName="page-link"
-          breakClassName="page-item"
-          breakLinkClassName="page-link"
-          containerClassName="pagination"
-          activeClassName="active"
-          forcePage={page - 1}
-        />
-      </div>
     </>
   );
 };
